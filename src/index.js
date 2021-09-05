@@ -7,12 +7,16 @@ import Situacao from "./Componentes/Situacao";
 import Sucesso from "./Componentes/Sucesso";
 import Todosfilmes from "./Componentes/Todosfilmes";
 import Topo from "./Componentes/Topo";
+import "./Estilos/style.css";
+import "./Estilos/reset.css";
 
 function App(){
     return(
         <>
             <BrowserRouter>
+
                 <Topo/>
+
                 <Situacao/>
             
                 <Switch>
@@ -21,8 +25,8 @@ function App(){
                         <Todosfilmes/>
                     </Route>
 
-                    <Route path="/sessoes" exact>
-                        <Horarios/>
+                    <Route path="/sessoes/:idFilme" exact>
+                        <Horarios />
                     </Route>
 
                     <Route path="/assentos" exact>

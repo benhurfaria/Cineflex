@@ -1,0 +1,193 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.topo{
+    background-color: #C3CFD9;
+    width:100%;
+    height: 67px;
+    color: #E8833A;
+    font-size: 34px;
+    font-weight: 400;
+    display: flex;
+    position:fixed;
+    top:0;
+    align-items: center;
+    justify-content: center;
+}
+.situacao{
+    width:100%;
+    height: 80px;
+    color: #293845;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-top: 90px;
+}
+.filmes{
+    display: flex; 
+    flex-direction: row;
+    width: 140px;
+    background-color: #FFFFFF;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    height: 209px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+}
+.estado{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.filmes img{
+    width: 129px;
+    height: 193px;
+}
+
+.data{
+    display: block;
+    color: #293845;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: 24px;
+    display: flex;
+    height: 45px;
+
+}
+.horarios{
+    margin-top: 30px;
+}
+.horas{
+    width:93px;
+    height: 43px;
+    margin-left: 24px;
+    margin-right: 15px;
+    margin-top: 10px;
+    background-color: #E8833B;
+    border-radius: 3px;
+    color:#FFFFFF;
+    font-size: 18px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.horarios > div{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.poltrona{
+    width: 26px;
+    height: 26px;
+    background: #C3CFD9;
+    border: 1px solid #808F9D;
+    box-sizing: border-box;
+    border-radius: 12px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    margin-top: 10px;
+}
+.sala-cinema{
+    margin-left: 22px;
+    margin-right: 2px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.selecionado{
+    width: 25px;
+    height: 25px;
+    background-color: #8DD7CF;
+    border: 1px solid #1AAE9E;
+    box-sizing: border-box;
+    border-radius: 17px;
+}
+.disponivel{
+    background-color: #C3CFD9;
+    border: 1px solid #7B8B99;
+    box-sizing: border-box;
+    border-radius: 17px;
+    width: 24px;
+    height: 24px;
+}
+.indisponivel{
+    width: 24px;
+    height: 24px;
+    background-color: #FBE192;
+    border: 1px solid #F7C52B;
+    box-sizing: border-box;
+    border-radius: 17px;
+}
+.status{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+.status-palavra{
+    color: #4E5A65;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+.inputs{
+    margin-left: 22px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #293845;
+}
+input{
+    height: 51px;
+    margin-top: 10px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    outline: none;
+    display: block;
+    margin-bottom: 25px;
+    width: 90%;
+}
+.reserva{
+    background-color: #E8833A;
+    border-radius: 3px;
+    width:80px;
+    font-weight: 400;
+    color: #FFFFFF;
+    width: 225px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-left: 50px;
+    margin-bottom: 150px;
+    margin-top: 40px;
+}
+
+.tela4 p{
+    font-weight: bold;
+    margin-top: 30px;
+}
+.tela4{
+    margin-left: 29px;
+    color: #293845;
+}
+.dados h1{
+    margin-top: 18px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    font-size: 22px;
+}
+.dados h2{
+    font-size: 22px;
+}
+.escondido{
+    display: none;
+}
