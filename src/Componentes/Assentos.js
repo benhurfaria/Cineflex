@@ -1,11 +1,22 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, Link} from "react-router-dom";
-
+import Assento from "./Assento";
+//let ids=[];
+let mandarDados={
+    ids: [],
+    name:"", 
+    cpf: ""
+};
 export default function Assentos(){
     const params = useParams();
     console.log(params);
+    
+    
     const [assentos, setAssentos] = useState({day:{}, seats:[], movie:{} });
+    const [assentosSelecionados, setAssentosSelecionados] = useState([]);
+    const [nomeComprador, setNomeComprador] = useState("");
+    const [cpfComprador, setCpfComprador] = useState("");
 
     useEffect(()=>{
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${params.idSessao}/seats`)
@@ -15,13 +26,30 @@ export default function Assentos(){
         });
     },[]);
 
+    function retirar(arr,idA){
+        if(idA === arr) return false;
+        return true;
+    }
 
-
+    function assentosSelec(idA, acao){
+        if(acao === "colocar"){
+            mandarDados.ids.push(idA);
+        } else{
+            mandarDados.ids = mandarDados.ids.filter((arr) => retirar(arr, idA))
+        }     
+        console.log(mandarDados.ids);
+    }
+    function verNome(){
+        mandarDados.name = nomeComprador;
+        mandarDados.cpf = cpfComprador;
+        const promessa = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", mandarDados);
+        
+    }
     return(
         <>
             <div className="sala-cinema ">
                     {
-                        assentos.seats.map((seat,index) => (<div class="poltrona">{(index > 8)? seat.name : "0"+seat.name}</div>))
+                        assentos.seats.map((seat,index) => (<Assento seat={seat} index={index} available={(seat.isAvailable)? "dispon" : "indispon"} setAssentosSelecionados={setAssentosSelecionados} assentosSelec={assentosSelec} />))
                     }
             </div>
             <div class="status ">
@@ -36,13 +64,15 @@ export default function Assentos(){
                 </div>
                 <div class="inputs ">
                     <span>Nome do comprador:</span>
-                    <input type="text" placeholder="Digite seu nome..."></input>
+                    <input type="text" placeholder="Digite seu nome..." value={nomeComprador} onChange={e => setNomeComprador(e.target.value)}></input>
                     <span>CPF do comprador:</span>
-                    <input type="text" placeholder="Digite seu CPF..."></input>
+                    <input type="text" placeholder="Digite seu CPF..." value={cpfComprador} onChange={e=> setCpfComprador(e.target.value)}></input>
                 </div>
-                <div class="reserva ">
-                    <span>Reservar assento(s)</span>
-                </div>
+                <Link to="/sucesso">
+                    <div class="reserva " onClick={verNome}>
+                        <span>Reservar assento(s)</span>
+                    </div>
+                </Link>
         </>
 
     );

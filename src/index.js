@@ -1,5 +1,8 @@
 import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams, Link} from "react-router-dom";
 import styled from "styled-components";
 import Assentos from "./Componentes/Assentos";
 import Horarios from "./Componentes/Horarios";
@@ -11,6 +14,17 @@ import "./Estilos/style.css";
 import "./Estilos/reset.css";
 
 function App(){
+
+    const [assentos, setAssentos] = useState([]);
+    const [nome, setNome] = useState("");
+    const [cpf, setCpf] = useState("");
+
+    function setarDados(ids, name, cp){
+        setAssentos(ids);
+        setNome(name);
+        setCpf(cp);
+    }
+
     return(
         <>
             <BrowserRouter>
