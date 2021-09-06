@@ -29,7 +29,7 @@ function App(){
                         <Horarios />
                     </Route>
 
-                    <Route path="/assentos" exact>
+                    <Route path="/assentos/:idSessao" exact>
                         <Assentos/>
                     </Route>
 

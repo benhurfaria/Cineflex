@@ -1,16 +1,51 @@
-import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams, Link} from "react-router-dom";
 
 export default function Horarios(){
     const params = useParams();
-    console.log(params);
+    
+    const [sessoes, setSessao] = useState({days:[]});
+
+    useEffect(()=> {
+        const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies/${params.idFilme}/showtimes`);
+
+        promise.then(resp => {
+            setSessao(resp.data);
+        });
+
+    }, []);
+    console.log(sessoes);
+    const {
+        days
+    } = sessoes;
+    
+    days.map((day) => (console.log(day)));
+    
+    
     return(
         <div className="horarios ">
-            <span className="data">Quinta-feira - 24/06/2021</span>
-            <div>
-                <span className="horas">15:00</span>
-                <span className="horas">15:00</span>
-                <span className="horas">15:00</span>
-            </div>
+            
+            {
+                days.map((day) => (
+                    <>
+                        <span className="data">{day.weekday} - {day.date}</span>
+                        <div>
+                            {
+                                day.showtimes.map((showtime) =>(
+                                    <>
+                                        <Link to={`/assentos/${showtime.id}`} className="linkzin">
+                                            <span className="horas">{showtime.name}</span>
+                                        </Link>
+                                    </>
+                                ))
+                            }
+                        </div>
+                    </>
+                ))
+
+            }
+            
         </div>
     );
 }

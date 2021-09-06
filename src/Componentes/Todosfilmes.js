@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, Link} from "react-router-dom";
 
 export default function Todosfilmes(){
     const [image, setImage] = useState([]);
-    let array = []
-
+    
     useEffect(()=> {
         const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies");
        
@@ -22,9 +21,11 @@ export default function Todosfilmes(){
 
             {
                 image.map((img) => (
-                    <div class="filmes">
-                        <img src={`${img.posterURL}`}/>
-                    </div>
+                    <Link to={`/sessoes/${img.id}`}>
+                        <div class="filmes">
+                            <img src={`${img.posterURL}`}/>
+                        </div>
+                    </Link>
                 ))
             }
             
