@@ -6,7 +6,8 @@ export default function Assento(props){
         index,
         available,
         setAssentosSelecionados,
-        assentosSelec
+        assentosSelec,
+
     } = props;
 
     const{
@@ -20,12 +21,12 @@ export default function Assento(props){
     function seleciona(){
         if(status === "poltrona seleciona") {
             setStatus("poltrona "+available);
-            assentosSelec(seat.id, "tirar");
+            assentosSelec(seat.id, "tirar", name);
             return;
         }
         if(isAvailable) {
             setStatus("poltrona seleciona");
-            assentosSelec(seat.id, "colocar");
+            assentosSelec(seat.id, "colocar", name);
         } else {
             alert("Esse assento não está disponivel");
         }

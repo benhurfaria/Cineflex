@@ -8,12 +8,15 @@ let mandarDados={
     name:"", 
     cpf: ""
 };
-export default function Assentos(){
+export default function Assentos(props){
     const params = useParams();
     console.log(params);
+    const{
+        setarDados,
+        setarDiaHora
+    } = props;
     
-    
-    const [assentos, setAssentos] = useState({day:{}, seats:[], movie:{} });
+    const [assentos, setAssentos] = useState({day:{}, seats:[], movie:{}, name:{} });
     const [assentosSelecionados, setAssentosSelecionados] = useState([]);
     const [nomeComprador, setNomeComprador] = useState("");
     const [cpfComprador, setCpfComprador] = useState("");
@@ -25,7 +28,7 @@ export default function Assentos(){
             setAssentos(resp.data);
         });
     },[]);
-
+    
     function retirar(arr,idA){
         if(idA === arr) return false;
         return true;
@@ -39,12 +42,16 @@ export default function Assentos(){
         }     
         console.log(mandarDados.ids);
     }
+    setarDiaHora(assentos.day.date, assentos.name);
+
     function verNome(){
         mandarDados.name = nomeComprador;
         mandarDados.cpf = cpfComprador;
+        setarDados(mandarDados.ids, mandarDados.name, mandarDados.cpf);
         const promessa = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", mandarDados);
         
     }
+    console.log(assentos.name)
     return(
         <>
             <div className="sala-cinema ">
@@ -73,6 +80,13 @@ export default function Assentos(){
                         <span>Reservar assento(s)</span>
                     </div>
                 </Link>
+                <div className="bottom">
+                    <div className="moldura">
+                        <img src={`${assentos.movie.posterURL}`}/>
+                    </div>
+                    <div className="nomeFilme">{assentos.movie.title}</div>
+                    
+                </div>
         </>
 
     );

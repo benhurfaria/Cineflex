@@ -18,13 +18,26 @@ function App(){
     const [assentos, setAssentos] = useState([]);
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
+    const [assentSessao, setAssentSessao] = useState([]);
+    const [filme, setFilme] = useState("");
+    const [sessao, setSessao] = useState("");
+    const [dia, setDia] = useState("");
 
-    function setarDados(ids, name, cp){
+    function setarDados(ids, name, cp, numero){
         setAssentos(ids);
         setNome(name);
         setCpf(cp);
+        setAssentSessao(numero);
     }
-
+    
+    function setarFilme(movie){
+        setFilme(movie);
+    }
+    function setarDiaHora(day, hora){
+        setDia(day);
+        setSessao(hora);
+    }
+    
     return(
         <>
             <BrowserRouter>
@@ -40,15 +53,15 @@ function App(){
                     </Route>
 
                     <Route path="/sessoes/:idFilme" exact>
-                        <Horarios />
+                        <Horarios setarFilme={setarFilme} />
                     </Route>
 
                     <Route path="/assentos/:idSessao" exact>
-                        <Assentos/>
+                        <Assentos setarDados={setarDados} setarDiaHora={setarDiaHora}/>
                     </Route>
 
                     <Route path="/sucesso" exact>
-                        <Sucesso/>
+                        <Sucesso sessao={sessao} dia={dia} filme={filme} assentos={assentos} nome={nome} cpf={cpf} assentSessao={assentSessao}/>
                     </Route>
 
                 </Switch>

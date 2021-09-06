@@ -2,10 +2,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, Link} from "react-router-dom";
 
-export default function Horarios(){
+export default function Horarios(props){
     const params = useParams();
-    
-    const [sessoes, setSessao] = useState({days:[]});
+    const {
+        setarFilme
+    } =props;
+    const [sessoes, setSessao] = useState({days:[], title:{}} );
 
     useEffect(()=> {
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies/${params.idFilme}/showtimes`);
@@ -17,11 +19,13 @@ export default function Horarios(){
     }, []);
     console.log(sessoes);
     const {
-        days
+        days,
+        title,
+        posterURL
     } = sessoes;
     
     days.map((day) => (console.log(day)));
-    
+    setarFilme(title);
     
     return(
         <div className="horarios ">
@@ -40,6 +44,12 @@ export default function Horarios(){
                                     </>
                                 ))
                             }
+                        </div>
+                        <div className="bottom">
+                            <div className="moldura">
+                                <img src={`${posterURL}`}/>
+                            </div>
+                            <div className="nomeFilme">{title}</div>
                         </div>
                     </>
                 ))
